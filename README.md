@@ -1,5 +1,5 @@
-# notary
-node.js REST API tutorial app
+# MealPlanner-Backend
+Backend REST API for MealPlanner app
 
-Follows this tutorial:
+Built following this tutorial:
 https://medium.freecodecamp.org/building-a-simple-node-js-api-in-under-30-minutes-a07ea9e390d2
