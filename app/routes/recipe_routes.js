@@ -45,4 +45,20 @@ module.exports = function(app, db) {
 			});
 		}
 	});
+
+	app.delete('/recipes/:id', (req, res) => {
+		try {
+			var details = {"_id" : new ObjectID(req.params.id)};
+		} catch(err) {
+			res.status(400).send( {"error" : "Invalid ID"} );
+			return;
+		}
+
+		db.collection('recipes').remove(details, (err, result) => {
+			if (err)
+				res.status(500).send( {"error" : err} );
+			else
+				res.send();
+		});
+	});
 };
