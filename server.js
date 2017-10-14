@@ -1,6 +1,6 @@
 const express		= require('express');
 const cors  		= require('cors');
-const MongoClient	= require('mongodb').MongoClient;
+const mongoose		= require('mongoose');
 const bodyParser	= require('body-parser');
 const db		= require('./config/db');
 
@@ -11,12 +11,10 @@ const port = 8000;
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-MongoClient.connect(db.url, (err, database) => {
-	if (err) return console.log(err)
+var database = mongoose.createConnection(db.url);
 
-	require('./app/routes')(app, database);
-	
-	app.listen(port, () => {
-		console.log('server lives');
-	});
+require('./app/routes')(app, database);
+
+app.listen(port, () => {
+	console.log('server lives');
 });
